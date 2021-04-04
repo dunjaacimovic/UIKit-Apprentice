@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChecklistsViewController: UITableViewController {
+class ChecklistsViewController: UITableViewController, AddItemViewControllerDelegate {
     
     var items = [
         ChecklistItem("Walk the dog", isChecked: false),
@@ -51,17 +51,33 @@ class ChecklistsViewController: UITableViewController {
         items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
+    // MARK: - Add Item View Controller Delegate
+    
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+        items.append(item)
+        let indexPaths = [IndexPath(row: items.count - 1, section: 0)]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Navigaton
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let controller = segue.destination as! AddItemViewController // force downcast
+            controller.delegate = self
+        }
+    }
 }
 
 // MARK: - Private methods
 
 private extension ChecklistsViewController {
-    
-    @IBAction func addItem() {
-        items.append(ChecklistItem("I am a new row", isChecked: false))
-        let indexPath = IndexPath(row: items.count - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
     
     func configureLabel(for cell: UITableViewCell, with item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel

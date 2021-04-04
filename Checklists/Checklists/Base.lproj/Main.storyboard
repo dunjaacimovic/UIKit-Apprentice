@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="lmp-sZ-YIh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dC4-zQ-9Bo">
                             <connections>
-                                <segue destination="ilg-me-PxG" kind="show" id="5Iu-4U-asb"/>
+                                <segue destination="ilg-me-PxG" kind="show" identifier="AddItem" id="5Iu-4U-asb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -74,7 +74,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ubr-em-Eur">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the item" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ubr-em-Eur">
                                                     <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -106,13 +106,14 @@
                                 <action selector="cancel" destination="ilg-me-PxG" id="JHV-j7-5pW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="rn1-P7-JsL">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="rn1-P7-JsL">
                             <connections>
                                 <action selector="done" destination="ilg-me-PxG" id="taT-9I-Uxl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="rn1-P7-JsL" id="QtZ-Sz-ezl"/>
                         <outlet property="textField" destination="ubr-em-Eur" id="XBD-oj-eJ1"/>
                     </connections>
                 </tableViewController>

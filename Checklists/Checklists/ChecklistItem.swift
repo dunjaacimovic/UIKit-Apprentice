@@ -11,7 +11,7 @@ class ChecklistItem {
     var text: String
     var isChecked: Bool
     
-    init(_ text: String, isChecked: Bool) {
+    init(_ text: String, isChecked: Bool = false) {
         self.text = text
         self.isChecked = isChecked
     }
