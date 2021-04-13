@@ -7,8 +7,9 @@
 
 import UIKit
 
-class ChecklistsViewController: UITableViewController, ItemDetailViewControllerDelegate {
+class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
+    var checklist: Checklist!
     var items = [
         ChecklistItem("Walk the dog", isChecked: false),
         ChecklistItem("Brush my teeth", isChecked: true),
@@ -19,8 +20,9 @@ class ChecklistsViewController: UITableViewController, ItemDetailViewControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .never
         loadChecklistItems()
+        title = checklist.name
     }
     
     // MARK: - Navigaton
@@ -98,7 +100,7 @@ class ChecklistsViewController: UITableViewController, ItemDetailViewControllerD
 
 // MARK: - Private methods
 
-private extension ChecklistsViewController {
+private extension ChecklistViewController {
     
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel

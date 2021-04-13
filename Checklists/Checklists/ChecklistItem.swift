@@ -14,5 +14,6 @@ class ChecklistItem: NSObject, Codable {
     init(_ text: String, isChecked: Bool = false) {
         self.text = text
         self.isChecked = isChecked
+        super.init()
     }
 }
