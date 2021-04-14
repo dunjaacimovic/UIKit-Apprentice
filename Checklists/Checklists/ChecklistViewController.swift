@@ -26,7 +26,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
     
     // MARK: - Navigaton
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
             let controller = segue.destination as! ItemDetailViewController // force downcast
@@ -41,7 +40,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
 
     // MARK: - Table View Data Source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -55,7 +53,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
     
     // MARK: - Table View Delegate
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             let item = items[indexPath.row]
@@ -73,7 +70,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
     
     // MARK: - Add Item View Controller Delegate
-    
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
@@ -99,7 +95,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
 }
 
 // MARK: - Private methods
-
 private extension ChecklistViewController {
     
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {

@@ -40,7 +40,7 @@
         <!--Add Checklist-->
         <scene sceneID="KCv-sG-vY8">
             <objects>
-                <tableViewController id="0rl-9F-IfO" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="0rl-9F-IfO" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="J2I-B6-FGe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,12 +55,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name of the list" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RJe-cc-jOj">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name of the list" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RJe-cc-jOj">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="done" destination="0rl-9F-IfO" eventType="editingDidEndOnExit" id="Zpf-Aj-de3"/>
+                                                        <outlet property="delegate" destination="0rl-9F-IfO" id="sOY-hk-1WX"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -80,12 +81,21 @@
                             <outlet property="delegate" destination="0rl-9F-IfO" id="nAz-hi-crt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Checklist" id="sTo-cw-uDd">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="w22-jm-Wew"/>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="z7Y-lB-i3p"/>
+                    <navigationItem key="navigationItem" title="Add Checklist" largeTitleDisplayMode="never" id="sTo-cw-uDd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="w22-jm-Wew">
+                            <connections>
+                                <action selector="cancel" destination="0rl-9F-IfO" id="Tev-5I-4u0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="z7Y-lB-i3p">
+                            <connections>
+                                <action selector="done" destination="0rl-9F-IfO" id="XjW-NL-2wK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneBarButton" destination="z7Y-lB-i3p" id="gQX-ox-2M7"/>
+                        <outlet property="doneBarButton" destination="z7Y-lB-i3p" id="fC7-Co-MT8"/>
+                        <outlet property="textField" destination="RJe-cc-jOj" id="gVJ-OI-tXd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="872-yW-SwK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
