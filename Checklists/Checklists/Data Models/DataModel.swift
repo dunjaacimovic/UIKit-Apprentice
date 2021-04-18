@@ -9,9 +9,31 @@ import Foundation
 
 class DataModel {
     var lists = [Checklist]()
+    var indexOfSelectedChecklist: Int {
+        get { return UserDefaults.standard.integer(forKey: "ChecklistIndex") }
+        set { UserDefaults.standard.set(newValue, forKey: "ChecklistIndex") }
+    }
     
     init() {
         loadChecklists()
+        registerDefaults()
+        handleFirstTime()
+    }
+    
+    func registerDefaults() {
+        let dictionary: [String: Any] = [
+            "ChecklistIndex": 1,
+            "FirstTime": true
+        ]
+        UserDefaults.standard.register(defaults: dictionary)
+    }
+    
+    func handleFirstTime() {
+        if UserDefaults.standard.bool(forKey: "FirstTime") {
+            lists.append(Checklist("List"))
+            indexOfSelectedChecklist = 0
+            UserDefaults.standard.set(false, forKey: "FirstTime")
+        }
     }
     
     func documentsDirectory() -> URL {

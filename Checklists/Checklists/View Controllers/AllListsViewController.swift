@@ -17,6 +17,16 @@ class AllListsViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.delegate = self
+        
+        let index = dataModel.indexOfSelectedChecklist
+        if index >= 0 && index < dataModel.lists.count {
+            let checklist = dataModel.lists[index]
+            performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        }
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowChecklist" {
@@ -41,6 +51,7 @@ class AllListsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dataModel.indexOfSelectedChecklist = indexPath.row
         performSegue(withIdentifier: "ShowChecklist", sender: dataModel.lists[indexPath.row])
     }
     
@@ -80,6 +91,13 @@ extension AllListsViewController: ListDetailViewControllerDelegate {
             }
         }
         navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - Navigation Controller Delegate
+extension AllListsViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController === self { dataModel.indexOfSelectedChecklist = -1 } // === is checking whether two variables refer to the exact same object
     }
 }
 

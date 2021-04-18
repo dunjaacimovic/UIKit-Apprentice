@@ -112,20 +112,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="jXf-3p-hBM">
-                                <rect key="frame" x="0.0" y="28" width="375" height="59"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="59.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jXf-3p-hBM" id="QXZ-Jx-sC9">
-                                    <rect key="frame" x="0.0" y="0.0" width="316" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="316" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Kk-5h-DR6">
-                                            <rect key="frame" x="54" y="16" width="254" height="27"/>
+                                            <rect key="frame" x="54" y="16" width="254" height="27.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezX-Vi-RYD">
-                                            <rect key="frame" x="16" y="16" width="22" height="27"/>
+                                            <rect key="frame" x="16" y="16" width="22" height="27.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="Nmo-IP-Pry"/>
                                             </constraints>
