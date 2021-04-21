@@ -7,19 +7,19 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController {
+class AllListsViewController: UITableViewController, UINavigationControllerDelegate {
     let cellIdentifier = "ChecklistCell"
     var dataModel: DataModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navigationController?.delegate = self
-        
         let index = dataModel.indexOfSelectedChecklist
         if index >= 0 && index < dataModel.lists.count {
             let checklist = dataModel.lists[index]
@@ -37,6 +37,11 @@ class AllListsViewController: UITableViewController {
             controller.delegate = self
         }
     }
+    
+    // MARK: - Navigation Controller Delegates
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController === self { dataModel.indexOfSelectedChecklist = -1 } // === is checking whether two variables refer to the exact same object
+    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,8 +49,10 @@ class AllListsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel!.text = dataModel.lists[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
+        let checklist = dataModel.lists[indexPath.row]
+        cell.textLabel!.text = checklist.name
+        cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
         cell.accessoryType = .detailDisclosureButton
         return cell
     }
@@ -93,11 +100,3 @@ extension AllListsViewController: ListDetailViewControllerDelegate {
         navigationController?.popViewController(animated: true)
     }
 }
-
-// MARK: - Navigation Controller Delegate
-extension AllListsViewController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController === self { dataModel.indexOfSelectedChecklist = -1 } // === is checking whether two variables refer to the exact same object
-    }
-}
-

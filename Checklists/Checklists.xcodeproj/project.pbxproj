@@ -93,8 +93,8 @@
 			children = (
 				4C36FAD1261B443800DA4552 /* AllListsViewController.swift */,
 				4C65DE3A261061D600D8B003 /* ChecklistViewController.swift */,
-				4C3ADE902614A01100A69CCB /* ItemDetailViewController.swift */,
 				4C6BE6D4261B547500B8DC16 /* ListDetailViewController.swift */,
+				4C3ADE902614A01100A69CCB /* ItemDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

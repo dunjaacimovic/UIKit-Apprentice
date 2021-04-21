@@ -14,7 +14,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-//        loadChecklistItems()
         title = checklist.name
     }
     
@@ -53,13 +52,11 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             configureCheckmark(for: cell,  with: item)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-//        saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         checklist.items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-//        saveChecklistItems()
     }
     
     // MARK: - Add Item View Controller Delegate
@@ -72,7 +69,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         let indexPaths = [IndexPath(row: checklist.items.count - 1, section: 0)]
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
-//        saveChecklistItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
@@ -83,7 +79,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             }
         }
         navigationController?.popViewController(animated: true)
-//        saveChecklistItems()
     }
 }
 
