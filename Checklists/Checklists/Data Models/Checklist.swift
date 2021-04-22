@@ -10,6 +10,7 @@ import UIKit
 class Checklist: NSObject, Codable {
     var name: String
     var items: [ChecklistItem]
+    var iconName = "No icon"
     
     init(_ name: String, _ items: [ChecklistItem] = []) {
         self.name = name
@@ -21,7 +22,6 @@ class Checklist: NSObject, Codable {
         let count = items
             .map { $0.isChecked ? 0 : 1 }
             .reduce(0, +)
-        print("\(name): \(count)")
         return count
     }
 }
